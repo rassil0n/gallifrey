@@ -22,8 +22,8 @@ cat << EOF
 
 EOF
 
-apt update >/dev/null 2>&1
-apt upgrade -y >/dev/null 2>&1
+apt update
+apt upgrade -y
 
 }
 
@@ -48,7 +48,7 @@ cat << EOF
 
 EOF
 
-	apt install --no-install-recommends -y "$1" >/dev/null 2>&1
+	apt install --no-install-recommends -y "$1"
 }
 
 groupinstall(){
@@ -59,7 +59,7 @@ cat << EOF
 	-----------------------------------
 
 EOF
-	apt install --no-install-recommends -y $(cat src/installgroups/$1) >/dev/null 2>&1
+	apt install --no-install-recommends -y $(cat src/installgroups/$1)
 }
 
 pipinstall(){
@@ -70,7 +70,7 @@ cat << EOF
 	-----------------------------------
 
 EOF
-	pip3 install "$1" >/dev/null 2>&1
+	pip3 install "$1"
 }
 
 makeinstall(){
@@ -81,8 +81,8 @@ cat << EOF
 
 EOF
 	git clone "$1" && cd $(basename "$1")
-	make >/dev/null 2>&1
-	make clean install >/dev/null 2>&1
+	make
+	make clean install
 	cd ..
 
 }
@@ -127,7 +127,7 @@ EOF
 
 	chown ${USER} ${CRONFILE}
 	chgrp ${USER} ${CRONFILE}
-	su $USER -c 'crontab - < ${CRONFILE}'
+	su $USER -c 'crontab - < /home/${USER}/.config/cronjobs'
 }
 
 setupsshkey(){
