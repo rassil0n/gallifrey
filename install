@@ -14,7 +14,15 @@ deb http://deb.debian.org/debian/ ${RELEASE}-updates main contrib non-free
 deb-src http://deb.debian.org/debian/ ${RELEASE}-updates main contrib non-free
 EOF
 
-apt update && apt upgrade
+	clear
+cat << EOF
+	Upadating system
+	-----------------
+
+EOF
+
+apt update >/dev/null 2>&1
+apt upgrade -y >/dev/null 2>&1
 
 }
 
@@ -101,7 +109,7 @@ userconfig(){
 	su $USER -c 'mkdir -p $HOME/.local/{share,bin,repos,opt}'
 	su $USER -c 'cd $HOME/.local/repos && git clone https://github.com/rassil0n/dots'
 	su $USER -c 'rsync -r $HOME/.local/repos/dots/ $HOME'
-	su $USER -c 'sh $HOME/.local/bin/setwal'
+	su $USER -c 'sh $HOME/.local/bin/setbg'
 
 	CRONFILE=/home/${USER}/.config/cronjobs
 
@@ -115,7 +123,7 @@ EOF
 
 	chown ${USER} ${CRONFILE}
 	chgrp ${USER} ${CRONFILE}
-	crontab - < ${CRONFILE}
+	su $USER -c 'crontab - < ${CRONFILE}'
 }
 
 setupsshkey(){
@@ -126,7 +134,7 @@ EOF
 
 echo -n "Please enter your email: "
 read USERMAIL
-su $USERNAME -c 'ssh-keygen -t ed25519 -C ""$USERMAIL""'
+su $USER -c 'ssh-keygen -t ed25519 -C ""$USERMAIL""'
 }
 
 initdoas(){
