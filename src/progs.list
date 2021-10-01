@@ -10,6 +10,7 @@ G,mail
 G,multimedia
 G,network
 G,system
+G,suckless
 M,https://github.com/rassil0n/dmenu
 M,https://github.com/rassil0n/dwm
 M,https://github.com/rassil0n/sent
