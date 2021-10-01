@@ -1,0 +1,7 @@
+libx11-dev
+libx11-xcb-dev
+libxft-dev
+libxinerama-dev
+libxcb-res0-dev
+libncurses-dev
+libxrandr-dev

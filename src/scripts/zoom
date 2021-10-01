@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+# cd /tmp
+# wget https://zoom.us/client/latest/zoom_amd64.deb
+# apt install ./zoom_amd64.deb
+
+echo "foo"
