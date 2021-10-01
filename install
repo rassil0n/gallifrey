@@ -16,6 +16,7 @@ EOF
 
 	clear
 cat << EOF
+	-----------------
 	Upadating system
 	-----------------
 
@@ -41,6 +42,7 @@ installationloop(){
 aptinstall(){
 	clear
 cat << EOF
+	-----------------------------------
 	Installing package ${1}
 	-----------------------------------
 
@@ -52,6 +54,7 @@ EOF
 groupinstall(){
 	clear
 cat << EOF
+	-----------------------------------
 	Installing group ${1}
 	-----------------------------------
 
@@ -62,6 +65,7 @@ EOF
 pipinstall(){
 	clear
 cat << EOF
+	-----------------------------------
 	pip-Installing ${1}
 	-----------------------------------
 
