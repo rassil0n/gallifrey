@@ -14,7 +14,7 @@ deb http://deb.debian.org/debian/ ${RELEASE}-updates main contrib non-free
 deb-src http://deb.debian.org/debian/ ${RELEASE}-updates main contrib non-free
 EOF
 
-apt update
+apt update && apt upgrade
 
 }
 
@@ -31,21 +31,46 @@ installationloop(){
 }
 
 aptinstall(){
-	apt install --no-install-recommends -y "$1"
+	clear
+cat << EOF
+	Installing package ${1}
+	-----------------------------------
+
+EOF
+
+	apt install --no-install-recommends -y "$1" >/dev/null 2>&1
 }
 
 groupinstall(){
-	apt install --no-install-recommends -y $(cat src/installgroups/$1)
+	clear
+cat << EOF
+	Installing group ${1}
+	-----------------------------------
+
+EOF
+	apt install --no-install-recommends -y $(cat src/installgroups/$1) >/dev/null 2>&1
 }
 
 pipinstall(){
-	pip3 install "$1"
+	clear
+cat << EOF
+	pip-Installing ${1}
+	-----------------------------------
+
+EOF
+	pip3 install "$1" >/dev/null 2>&1
 }
 
 makeinstall(){
+	clear
+cat << EOF
+	Installing via make: ${1}
+	-----------------------------------
+
+EOF
 	git clone "$1" && cd $(basename "$1")
-	make
-	make clean install
+	make >/dev/null 2>&1
+	make clean install >/dev/null 2>&1
 	cd ..
 
 }
@@ -79,7 +104,6 @@ userconfig(){
 	su $USER -c 'sh $HOME/.local/bin/setwal'
 
 	CRONFILE=/home/${USER}/.config/cronjobs
-	su $USERNAME -c 'touch $CRONFILE'
 
 cat >> $CRONFILE << EOF
 SHELL=/bin/sh
@@ -89,7 +113,9 @@ SHELL=/bin/sh
 */30 * * * *    /home/${USER}/.local/bin/cron/batcheck 2> /dev/null
 EOF
 
-	crontab - < $CRONFILE
+	chown ${USER} ${CRONFILE}
+	chgrp ${USER} ${CRONFILE}
+	crontab - < ${CRONFILE}
 }
 
 setupsshkey(){

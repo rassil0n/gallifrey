@@ -1,4 +1,3 @@
-A,doas
 G,archives
 G,filemanager
 G,filesystems
@@ -16,6 +15,7 @@ M,https://github.com/rassil0n/dwm
 M,https://github.com/rassil0n/sent
 M,https://github.com/rassil0n/st
 M,https://github.com/rassil0n/tabbed
+M;https://github.com/slicer69/doas
 P,neovim
 P,unidecode
 P,ueberzug
