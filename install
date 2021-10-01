@@ -108,7 +108,7 @@ EOF
 
 userconfig(){
 	chsh -s /bin/zsh ${USER}
-	su $USER -c 'mkdir -p $HOME/{dl,temp,work,mm}'
+	su $USER -c 'mkdir -p $HOME/{code,dl,dox,temp,mm}'
 	su $USER -c 'mkdir -p $HOME/mnt/cell{1,2}'
 	su $USER -c 'mkdir -p $HOME/.local/{share,bin,repos,opt}'
 	su $USER -c 'cd $HOME/.local/repos && git clone https://github.com/rassil0n/dots'
