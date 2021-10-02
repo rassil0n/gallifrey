@@ -4,6 +4,10 @@
 
 . ./config
 
+mkdir -p /gallifrey/{src,repos}
+cp -r src/gtk /gallifrey/src
+WORKDIR=$(pwd)
+
 updatesources(){
 # cat << EOF
 cat > /etc/apt/sources.list << EOF
@@ -80,17 +84,17 @@ cat << EOF
 	-----------------------------------
 
 EOF
+	cd /gallifrey/repos
 	git clone "$1" && cd $(basename "$1")
 	make
 	make clean install
-	cd ..
-
+	cd $WORKDIR
 }
 
 installgtk(){
 	mkdir -p /usr/share/{themes,icons}
-	tar -xf src/gtk/nordic-icons.tar -C /usr/share/icons
-	tar -xf src/gtk/nordic-theme.tar -C /usr/share/themes
+	tar -xf /gallifrey/src/gtk/nordic-icons.tar -C /usr/share/icons
+	tar -xf /gallifrey/src/gtk/nordic-theme.tar -C /usr/share/themes
 }
 
 editsudoers(){
@@ -151,6 +155,15 @@ permit nopass $USER as root cmd apt args update
 EOF
 }
 
+getfirmware(){
+	FIRMWAREFOLDER=/gallifrey/src/firmware
+	mkdir -p ${FIRMWAREFOLDER}
+	LINK=http://cdimage.debian.org/cdimage/unofficial/non-free/firmware/${TBDI_RELEASE}/current/firmware.tar.gz
+	wget -O ${FIRMWAREFOLDER}/firmware.tar.gz ${LINK}
+	tar -xf ${FIRMWAREFOLDER}/firmware.tar.gz -C ${FIRMWAREFOLDER}
+	rm ${FIRMWAREFOLDER}/firmware.tar.gz
+}
+
 updatesources
 installationloop
 installgtk
@@ -158,4 +171,4 @@ editsudoers
 userconfig
 setupsshkey
 initdoas
-[ "$FIRMWARE" = "true" ] && wget http://cdimage.debian.org/cdimage/unofficial/non-free/firmware/${RELEASE}/current/firmware.tar.gz
+[ "$FIRMWARE" = "true" ] && getfirmware
