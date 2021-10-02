@@ -1,2 +1,3 @@
 USER=flo
 RELEASE=bookworm
+FIRMWARE=true

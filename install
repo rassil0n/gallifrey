@@ -158,3 +158,4 @@ editsudoers
 userconfig
 setupsshkey
 initdoas
+[ "$FIRMWARE" = "true" ] && wget http://cdimage.debian.org/cdimage/unofficial/non-free/firmware/${RELEASE}/current/firmware.tar.gz
