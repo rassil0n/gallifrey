@@ -4,9 +4,10 @@
 
 . ./config
 
-mkdir -p /gallifrey/{src,repos}
-cp -r src/gtk /gallifrey/src
 WORKDIR=$(pwd)
+mkdir -p /gallifrey/src/gtk
+mkdir -p /gallifrey/repos
+cp src/gtk/* /gallifrey/src/gtk
 
 updatesources(){
 # cat << EOF
@@ -38,7 +39,7 @@ installationloop(){
 			"M")	makeinstall "$program" ;;
 			"P")	pipinstall "$program" ;;
 			"A")	aptinstall "$program" ;;
-			*)		sh src/scripts/"$program" ;;
+			"S")	sh src/scripts/"$program" ;;
 		esac
 	done < src/progs.list ;
 }
@@ -158,7 +159,7 @@ EOF
 getfirmware(){
 	FIRMWAREFOLDER=/gallifrey/src/firmware
 	mkdir -p ${FIRMWAREFOLDER}
-	LINK=http://cdimage.debian.org/cdimage/unofficial/non-free/firmware/${TBDI_RELEASE}/current/firmware.tar.gz
+	LINK=http://cdimage.debian.org/cdimage/unofficial/non-free/firmware/${RELEASE}/current/firmware.tar.gz
 	wget -O ${FIRMWAREFOLDER}/firmware.tar.gz ${LINK}
 	tar -xf ${FIRMWAREFOLDER}/firmware.tar.gz -C ${FIRMWAREFOLDER}
 	rm ${FIRMWAREFOLDER}/firmware.tar.gz
