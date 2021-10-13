@@ -27,6 +27,7 @@ rsync
 tmux
 universal-ctags
 wget
+xclip
 xdo
 xdotool
 xinit
