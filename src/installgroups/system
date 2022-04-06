@@ -15,6 +15,7 @@ htop
 jq
 kdeconnect
 libpam0g-dev
+locate
 ncdu
 neovim
 npm
