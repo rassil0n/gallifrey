@@ -7,3 +7,5 @@ cd /gallifrey/repos
 git clone https://github.com/hrkfdn/ncspot && cd ncspot
 
 cargo build --release --features cover
+
+cp target/release/ncspot /usr/local/bin
