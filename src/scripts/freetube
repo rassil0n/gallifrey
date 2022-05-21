@@ -2,4 +2,4 @@
 
 export VER="0.16.0"
 wget https://github.com/FreeTubeApp/FreeTube/releases/download/v${VER}-beta/FreeTube_${VER}_amd64.deb
-sudo apt install -f ./FreeTube_${VER}_amd64.deb
+apt install -f ./FreeTube_${VER}_amd64.deb
