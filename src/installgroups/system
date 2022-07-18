@@ -21,7 +21,7 @@ neovim
 npm
 ntp
 numlockx
-openjdk-11-jdk
+openjdk-17-jdk
 pass
 pass-extension-otp
 python-dev
