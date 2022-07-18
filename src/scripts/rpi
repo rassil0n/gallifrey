@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+wget https://downloads.raspberrypi.org/imager/imager_latest_amd64.deb
+apt install ./imager_latest_amd64.deb -y
