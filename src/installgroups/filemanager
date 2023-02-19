@@ -1,6 +1,8 @@
 atool
 bat
+chafa
 highlight
+libmagic-dev
 mediainfo
 docx2txt
 poppler-utils
