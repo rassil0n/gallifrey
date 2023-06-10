@@ -30,6 +30,7 @@ python3-pip
 rsync
 sc-im
 tmux
+translate-shell
 universal-ctags
 wget
 xbanish
